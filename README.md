@@ -119,7 +119,7 @@
 
 - Once logged-in set the current terminal as a slave
 
-  `> rs.slave.Ok()`
+  `> rs.slaveOk()`
 
 - Then use the loaded database
 
