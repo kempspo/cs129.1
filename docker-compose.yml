@@ -1,0 +1,36 @@
+# SOURCE: https://github.com/yeasy/docker-compose-files/blob/master/mongo_cluster/scripts/mongosetup.sh
+# SOURCE: http://www.sohamkamani.com/blog/2016/06/30/docker-mongo-replica-set/
+version: '3'
+services:
+  mongo3:
+    image: pitzcarraldo/alpine-node-mongo
+    hostname: mongo3
+    expose:
+      - "27017"
+    volumes:
+      - ./mongo3:/data/db
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--replSet", "book", "--rest", "--httpinterface" ]
+  mongo2:
+    image: pitzcarraldo/alpine-node-mongo
+    hostname: mongo2
+    expose:
+      - "27017"
+    volumes:
+      - ./mongo2:/data/db
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--replSet", "book", "--rest", "--httpinterface" ]
+  mongo1:
+    image: pitzcarraldo/alpine-node-mongo
+    hostname: mongo1
+    expose:
+      - "27017"
+    volumes:
+      - ./mongo1:/data/db
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--replSet", "book", "--rest", "--httpinterface" ]
+  mongosetup:
+    image: pitzcarraldo/alpine-node-mongo
+    expose:
+      - "27017"
+    restart: always
